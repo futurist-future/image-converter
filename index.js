@@ -1,10 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const pathToFile = path.join(__dirname, "image.bmp");
-const pathToOutput = (formatting) => {
-  return path.join(__dirname, `bmp.txt`);
-};
+const pathToFile = path.join(__dirname, "duck.bmp");
+const imageData = fs.readFileSync(pathToFile, { encoding: "hex" });
+fs.writeFileSync("z.bmp", imageData);
 
-const imageData = fs.readFileSync(pathToFile, "hex");
-fs.writeFileSync(pathToOutput("hex"), imageData);

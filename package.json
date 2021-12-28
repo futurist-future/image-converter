@@ -1,0 +1,23 @@
+{
+  "name": "image-converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregoriomario/image-converter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregoriomario/image-converter/issues"
+  },
+  "homepage": "https://github.com/gregoriomario/image-converter#readme",
+  "dependencies": {
+    "mocha": "^9.1.3"
+  }
+}

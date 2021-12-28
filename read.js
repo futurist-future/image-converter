@@ -1,40 +1,29 @@
 const fs = require("fs");
 const path = require("path");
+const hexAverage = require("./hexAverage");
+const { hexToDecimal } = require("./hexConverter");
+const splitPerIndex = require("./lib/splitPerIndex");
 
-// const pathToFile = path.join(__dirname, "bmp.txt");
+const pathToFile = path.join(__dirname, "image.bmp");
+const imageData = fs.readFileSync(pathToFile, "hex");
 
-// const imageData = fs.readFileSync(pathToFile, "utf8");
-// const pathToOuput = path.join(__dirname, `imagebmp.json`);
+const dataString = String(imageData);
 
-// fs.writeFileSync(pathToOuput, JSON.stringify(imageData));
-
-const pathToFile = path.join(__dirname, "imagebmp.json");
-const imageData = fs.readFileSync(pathToFile, "utf8");
-const pathToOuput = path.join(__dirname, `imagebmpdata.json`);
-
-const imageParse = JSON.parse(imageData);
-const header = imageParse.slice(0, 108);
-const body = imageParse.slice(108);
-const bodyString = new String(body);
+const headerLength = hexToDecimal(dataString.slice(28, 30));
+const header =
+  headerLength < 124 ? dataString.slice(0, 108) : dataString.slice(0, 124);
+const body = headerLength < 124 ? dataString.slice(108) : dataString.slice(124);
 
 let counter = 0;
-let LENGTH = 6;
+let LENGTH = headerLength < 124 ? 6 : 8;
 const arr = [];
-for (let i = 0; i < bodyString.length; i++) {
-  let current = bodyString.slice(counter, counter + LENGTH);
-  arr.push(current);
+for (let i = 0; i < body.length; i += LENGTH) {
+  let current = body.slice(counter, counter + LENGTH);
+  arr.push(hexAverage(current, headerLength));
+  counter += LENGTH;
 }
 
-fs.writeFileSync(pathToOuput, JSON.stringify(arr));
+const wholeFile = header + arr.join("");
 
-// const bodyParse = JSON.parse(body);
-// console.log(bodyParse.length / 6);
-
-// fs.writeFileSync(pathToOuput, JSON.stringify(body.split("19ff49")));
-// const imageDataArr = new Array(JSON.parse(imageData))[0];
-// console.log(imageDataArr.filter((data) => data.startsWith("da")));
-
-// console.log(
-//   "424df6ee0500000000003600000028000000e00100000e0100000100180000000000c0ee0500c40e0000c40e00000000000000000000"
-//     .length
-// );
+const pathToOuput = path.join(__dirname, `imageBnW.bmp`);
+fs.writeFileSync(pathToOuput, wholeFile, { encoding: "hex" });

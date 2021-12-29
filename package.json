@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/gregoriomario/image-converter#readme",
   "dependencies": {
+    "daerah-indonesia": "^1.0.1",
+    "faker": "^5.5.3",
     "mocha": "^9.1.3"
   }
 }

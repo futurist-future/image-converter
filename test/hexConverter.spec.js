@@ -1,5 +1,5 @@
 const assert = require("assert");
-const hexToDecimal = require("../hexConverter");
+const { hexToDecimal } = require("../lib/hexConverter");
 
 describe("Convert hex to Nominal", () => {
   it("1+1 = 2", () => {

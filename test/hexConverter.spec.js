@@ -1,20 +1,20 @@
 const assert = require("assert");
-const { hexToDecimal } = require("../lib/hexConverter");
+const { hexToDecimal } = require("../lib/utils/hexConverter");
 
 describe("Convert hex to Nominal", () => {
-  it("1+1 = 2", () => {
-    assert.equal(1 + 1, 2);
+  const numbers = [0xff, 0xaf, 0x00, 0x000000, 0xaaaa, 0x123];
+
+  afterEach(() => {
+    assert.equal(typeof hexToDecimal("0xff"), "number");
   });
 
-  it("Test with string", () => {
-    const number = 0xff;
-
-    assert.equal(hexToDecimal(number), 255);
-    assert.equal(typeof hexToDecimal(number), "number");
+  it("Test with hex", () => {
+    numbers.forEach((number) => {
+      assert.equal(hexToDecimal(number), number);
+    });
   });
 
   it("Test hex with string", () => {
     assert.equal(hexToDecimal("0xff"), 255);
-    assert.equal(typeof hexToDecimal("0xff"), "number");
   });
 });

@@ -1,7 +1,14 @@
 const path = require("path");
 const fs = require("fs");
 const convert = require("./lib/converter");
-const splitPerIndex = require("./lib/utils/splitPerIndex");
+const { splitIntoPart } = require("./lib/utils/splitPerIndex");
 
-const imagePath = path.join(__dirname, "images", "bocil.bmp");
-convert.bmp.toSephia(imagePath);
+const imagePath = path.join(__dirname, "images", "place24.bmp");
+convert.bmp.toBnW(imagePath);
+
+// console.log(splitIntoPart([1, 2, 3, 4, 5, 6, 7, 8, 9,  10], 4));
+
+// See inside image
+// const imageData = fs.readFileSync(imagePath, { encoding: "hex" });
+// const outputpath = path.join(__dirname, "place32.txt");
+// fs.writeFileSync(outputpath, imageData, { encoding: "utf-8" });

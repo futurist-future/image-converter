@@ -1,0 +1,16 @@
+424d -> header field
+f6fe1300 : 16186899 -> size of bmp file in bytes
+0000
+0000
+36000000 : 54 -> starting address, of the byte where the bitmap image data (pixel array) can be found
+28000000 : 40 -> header size
+20030000 : 8195 -> the bitmap width in pixels (signed integer)
+22020000 : 8706 -> the bitmap height in pixels (signed integer)
+0100 : 1 -> number of color planes
+1800 : 24 -> number of bits in pixel
+00000000 -> the compression method
+c0fe1300 : 12647955 -> image size
+c40e0000 : 50190 -> the horizontal resolution of the image. (pixel per metre, signed integer)
+c40e0000 : 50190-> the vertical resolution of the image. (pixel per metre, signed integer)
+00000000 -> the number of colors in the color palette, or 0 to default to 2n
+00000000 -> the number of important colors used, or 0 when every color is important

@@ -3,8 +3,8 @@ const path = require("path");
 const convert = require("./lib/converter");
 const { splitPerIndex } = require("./lib/utils/splitPerIndex");
 
-const imagePath = path.join(__dirname, "images", "place32.bmp");
-convert.bmp.blur(imagePath);
+const imagePath = path.join(__dirname, "images", "bocil.bmp");
+convert.bmp.blur(imagePath, "light");
 
 //const outputPath = path.join(__dirname, "7.txt");
 
